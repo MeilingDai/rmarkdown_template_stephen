@@ -82,7 +82,7 @@ knitr::kable(head(full_data, n = 6), format = "html", caption = "tidy up data of
 
 **Raw counts of microRNAs of mock and hendra infected horses**
 
-![](resources/img/Figure 1.png){width=600px}
+![](resources/img/Figure 1.png){width=500px}
 
 
 
@@ -120,6 +120,24 @@ raw_count_more_than_10000 %>% ggplot(aes(x = horse_id,
   labs(title = "microRNA raw counts more than 1000 of 6 horses")
 ```
 
+
+**PCA analysis"**
+
+```{r out.width='100%', include=FALSE}
+field_horses_raw_counts_PCA <- field_horses_raw_counts %>% 
+  column_to_rownames("gene") %>% 
+  scale()
+
+
+microRNA_PCA <- prcomp(field_horses_raw_counts_PCA)
+
+
+summary(microRNA_PCA)
+```
+
+```{r out.width='60%', echo=FALSE, fig.align='centre', fig.height= 4, fig.width=6, fig.cap="MicroRNA_PCA"}
+plot(microRNA_PCA)
+```
 
 # My Digital Toolbox
 
